@@ -127,10 +127,8 @@ class Istio(Install):
 
 class SetEnv:
     def __init__(self):
-        envbuff = os.environ.copy()
-        envbuff["PATH"] = os.pathsep.join(
-            ["/usr/local/istio/bin/", envbuff["PATH"]])
-        subprocess.run(["ls"], env=envbuff)
+        os.environ["PATH"] += os.pathsep + os.pathsep.join(["/usr/local/istio/bin/"])
+        print(os.environ["PATH"])
         print("\[+] PATH set")
 
 
