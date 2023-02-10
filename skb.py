@@ -6,6 +6,8 @@ import os
 import re
 
 # Main Installation class
+
+
 class Install:
     def __init__(self, cmd, arg1, arg2):
         self.cmd = cmd
@@ -127,7 +129,8 @@ class Istio(Install):
 
 class SetEnv:
     def __init__(self):
-        os.environ["PATH"] += os.pathsep + os.pathsep.join(["/usr/local/istio/bin/"])
+        os.environ["PATH"] += os.pathsep + \
+            os.pathsep.join(["/usr/local/istio/bin/"])
         print(os.environ["PATH"])
         print("\[+] PATH set")
 
@@ -164,6 +167,7 @@ class PortNumber:
                 break
         return portn
 
+
 class PortForward(Install):
     def __init__(self, portn):
         self.arg2 = '-n'
@@ -173,7 +177,9 @@ class PortForward(Install):
         self.portnf = str(portn) + ":80"
         print("[+] Run a command:", self.cmd, self.arg1, self.arg2,
               self.arg3, self.arg4, self.portnf)
-        self.command = str(self.cmd) + '\n' + str(self.arg1) + '\n' + str(self.arg2) + '\n' + str(self.arg3) + '\n' + str(self.arg4) + '\n' + str(self.portnf)
+        self.command = str(self.cmd) + '\n' + str(self.arg1) + '\n' + str(self.arg2) + \
+            '\n' + str(self.arg3) + '\n' + str(self.arg4) + \
+            '\n' + str(self.portnf)
         subprocess.Popen(self.command.split(), close_fds=True)
         print('\n', "!!!kubectl port-forward is now running in background on port",
               portn, "!!!")
