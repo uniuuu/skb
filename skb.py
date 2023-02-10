@@ -169,15 +169,15 @@ class PortForward(Install):
         self.arg2 = '-n'
         self.arg3 = 'istio-system'
         self.arg4 = 'svc/istio-ingressgateway'
-        self.arg5 = '&'
         super().__init__('kubectl', 'port-forward', self.arg2)
         self.portnf = str(portn) + ":80"
         print("[+] Run a command:", self.cmd, self.arg1, self.arg2,
-              self.arg3, self.arg4, self.portnf, self.arg5)
-        subprocess.run([self.cmd, self.arg1, self.arg2, self.arg3,
-                       self.arg4, self.portnf, self.arg5], check=True, shell=True)
+              self.arg3, self.arg4, self.portnf)
+        subprocess.Popen([self.cmd, self.arg1, self.arg2, self.arg3,
+                       self.arg4, self.portnf])
         print('\n', "!!!kubectl port-forward is now running in background on port",
               portn, "!!!")
+
 
 
 # Prerequisite packages
