@@ -173,11 +173,10 @@ class PortForward(Install):
         self.portnf = str(portn) + ":80"
         print("[+] Run a command:", self.cmd, self.arg1, self.arg2,
               self.arg3, self.arg4, self.portnf)
-        subprocess.Popen([self.cmd, self.arg1, self.arg2, self.arg3,
-                       self.arg4, self.portnf])
+        self.command = str(self.cmd) + '\n' + str(self.arg1) + '\n' + str(self.arg2) + '\n' + str(self.arg3) + '\n' + str(self.arg4) + '\n' + str(self.portnf) + '&'
+        subprocess.run(self.command.split())
         print('\n', "!!!kubectl port-forward is now running in background on port",
               portn, "!!!")
-
 
 
 # Prerequisite packages
