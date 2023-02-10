@@ -1,5 +1,4 @@
-#FROM ubuntu:20.04
-FROM uniuuu/ubuntu20.04:version2
+FROM ubuntu:20.04
 
 RUN apt-get update  \
     && apt-get install -yq --no-install-recommends python3
