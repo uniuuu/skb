@@ -162,7 +162,7 @@ class PortNumber:
                 continue
             else:
                 break
-
+        return portn
 
 class PortForward(Install):
     def __init__(self, portn):
@@ -177,7 +177,7 @@ class PortForward(Install):
         subprocess.run([self.cmd, self.arg1, self.arg2, self.arg3,
                        self.arg4, self.portnf, self.arg5], check=True, shell=True)
         print('\n', "!!!kubectl port-forward is now running in background on port",
-              self.portn, "!!!")
+              portn, "!!!")
 
 
 # Prerequisite packages
@@ -251,7 +251,3 @@ Cmd4('kubectl', 'create', 'namespace', 'seldon-system')
 Scmd('helm install seldon-core seldon-core-operator --repo https://storage.googleapis.com/seldon-charts --set usageMetrics.enabled=true --set istio.enabled=true --namespace seldon-system')
 portn = PortNumber.input()
 PortForward(portn)
-output2 = Cmd3('helm', 'list', '--all-namespaces')
-print(output2)
-output1 = Cmd5('kubectl', 'get', 'pods', '-n', 'seldon-system')
-print(output1)
